@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Http\Resources\Json\Resource;
 
 /*
 |--------------------------------------------------------------------------
@@ -11,8 +12,10 @@
 |
 */
 
-Route::get('/', 'ItemController@index');
+Route::get('/', 'PagesController@index');
 
-Route::get('/orders', function () {
-    return view('orders');
-});
+
+Route::get('/orders', 'OrdersController@index');
+Route::post('/orders/first', 'OrdersController@index');
+
+/* Route::resource('orders', 'OrdersController'); */

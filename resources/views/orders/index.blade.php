@@ -1,5 +1,7 @@
 @extends('layout')
 
 @section('content')
-    <p>Nueva compra</p>
+
+asdasdas
+
 @endsection
