@@ -1,5 +1,5 @@
 # Glamit test
-Aplicación web desarrollada como prueba para la empresa Glamit
+Aplicación web desarrollada como prueba para la empresa Glamit utilizando Laravel.
 
 
 ## Instalación
