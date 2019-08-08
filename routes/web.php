@@ -16,5 +16,6 @@ Route::get('/', 'PagesController@index');
 
 
 Route::get('/orders/create', 'OrdersController@create');
+Route::post('/orders/buy', 'OrdersController@buy');
 
 /* Route::resource('orders', 'OrdersController'); */
