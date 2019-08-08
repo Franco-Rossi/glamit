@@ -14,7 +14,7 @@ class CreateMaestroTable extends Migration
     public function up()
     {
         Schema::create('maestro', function (Blueprint $table) {
-            $table->bigIncrements('nro_pedido');/* Utilizado como key autoincremental */
+            $table->bigIncrements('id');/* Utilizado como key autoincremental */
             $table->string('metodo_envio')->nullable();
             $table->string('metodo_pago')->nullable();
             $table->timestamp('fecha_creacion')->nullable();

@@ -19,4 +19,6 @@ Route::get('/', 'PagesController@index');
 Route::get('/orders/create', 'OrdersController@create');
 Route::post('/orders/buy', 'OrdersController@buy');
 
+Route::patch('/orders/{order}/status', 'OrdersController@changeStatus');
+
 /* Route::resource('orders', 'OrdersController'); */

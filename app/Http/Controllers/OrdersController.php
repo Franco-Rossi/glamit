@@ -37,4 +37,20 @@ class OrdersController extends Controller
         $order = Order::create($data);    
         return redirect('/');
     }
+
+
+
+
+
+
+    public function changeStatus(Request $request, $id)
+    {
+    
+        $order = Order::findOrFail($id);
+        $order->estado_id = $request->status;
+        $order->save();
+    
+        return redirect('/');
+    }
+
 }
