@@ -3,8 +3,9 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use App\Order;
 
-class CreateEstadosTable extends Migration
+class AddForeignToEstadosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +14,8 @@ class CreateEstadosTable extends Migration
      */
     public function up()
     {
-        Schema::create('estados', function (Blueprint $table) {
-            $table->bigIncrements('id')->unsigned();
-            $table->string('estado', 32);
-            $table->string('subestado', 32);
+        Schema::table('maestro', function (Blueprint $table) {
+            $table->foreign('estado_id')->references('id')->on('estados');
         });
     }
 
@@ -27,6 +26,8 @@ class CreateEstadosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('estados');
+        Schema::table('maestro', function (Blueprint $table) {
+            //
+        });
     }
 }

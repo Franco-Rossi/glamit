@@ -20,8 +20,8 @@ class CreateMaestroTable extends Migration
             $table->timestamp('fecha_creacion')->nullable();
             $table->timestamp('fecha_actualizacion')->nullable(false)->useCurrent();
             $table->timestamp('fecha_factura')->nullable();
-            $table->string('estado', 32)->nullable();
-            $table->string('subestado', 32)->nullable();
+            $table->unsignedBigInteger('estado_id');
+            /* $table->foreign('estado_id')->references('id')->on('estados'); */
             $table->string('tienda')->nullable();
             $table->decimal('costo_envio', 12, 4)->nullable();
             $table->decimal('intereses', 12, 4)->nullable();

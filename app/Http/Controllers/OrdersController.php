@@ -22,31 +22,19 @@ class OrdersController extends Controller
         
     }
     
-    public function buy(){
-        
-        $item_codigo = request()->item_codigo;
-        $item = Item::findOrFail($item_codigo);
-        $status = Estado::findOrFail(5);
+    public function buy(Request $request){
+        $item = Item::findOrFail($request->item_codigo);
 
-        $order = new Order();
+        $data = $request->all();
+        $data['fecha_creacion'] = now();
+        $data['item_codigo'] = $item->id;
+        $data['item_nombre'] = $item->name;
+        $data['item_preciounitario'] = $item->price;
+        $data['intereses'] = ($item->price * $request->item_cantidad) * 0.05;
+        $data['item_subtotal'] = ($item->price * $request->item_cantidad) + $data['intereses'];
+        $data['estado_id'] = Estado::ESTADO_PENDIENTE;
 
-        $order->fecha_creacion = Carbon::now();
-
-        $order->estado = $status->estado;
-        $order->subestado = $status->subestado;
-        
-        $order->item_codigo = request('item_codigo');
-        $order->item_nombre = $item->name;
-        $order->item_preciounitario = $item->price;
-        $order->item_cantidad = request('item_cantidad');
-        
-        $order->cliente_nombre = request('cliente_nombre');
-        $order->cliente_email = request('cliente_email');
-        $order->cliente_telefono = request('cliente_telefono');
-        $order->cliente_direccion = request('cliente_direccion');
-        
-        $order->save();
-        
+        $order = Order::create($data);    
         return redirect('/');
     }
 }

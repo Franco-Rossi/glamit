@@ -1,6 +1,7 @@
 <?php
 use Illuminate\Http\Resources\Json\Resource;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
