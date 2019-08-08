@@ -10,7 +10,7 @@ class PagesController extends Controller
     public function index()
     {
 
-        $orders = Order::all();
+        $orders = Order::paginate(5);
 
         return view ('home', compact('orders'));
     }

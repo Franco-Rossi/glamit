@@ -28,7 +28,7 @@
                 <small>Todas las compras poseen un 5% de impuestos agregados al total de la transaccion.</small>
             </div>
         </div>
-        <div class="card">
+        <div class="card mt-1">
             <h5 class="card-header">Ingrese sus datos</h5>
             <div class="card-body">
                 <div class="row">
@@ -54,7 +54,7 @@
                 </div>
             </div>
         </div>
-        <button type="submit" class="btn btn-secondary btn-lg">Continuar</button>
+        <button type="submit" class="btn btn-success btn-block">Continuar</button>
     </form>
 </div>
 

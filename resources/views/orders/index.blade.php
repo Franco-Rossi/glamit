@@ -23,7 +23,8 @@
         <td><a href="/orders/{{$order->id}}">Ver compra</a></td> 
       </tr>
     @endforeach
-
   </table>
+
+  <div class="mt-2">{{ $orders->links() }}</div>
 
 @endsection

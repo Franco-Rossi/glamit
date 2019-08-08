@@ -2,8 +2,53 @@
 
 @section('content')
 <div class="container">
+
+        <div class="text-center">
+                @switch($order->estado->id)
+                    @case(App\Estado::ESTADO_PENDIENTE)
+                    @case(App\Estado::ESTADO_AYUDA)
+                        <form action="/orders/{{$order->id}}/status" method="POST"> @method('PATCH') @csrf  
+                            <p class="text-primary">Esperando confirmacion de pago</p>
+                            <button type="submit" name="status" value="{{App\Estado::ESTADO_CANCELADO}}" class="btn btn-block bg-danger text-white">Cancelar el pedido</button>
+                        </form>
+                        @break
+                    @case(App\Estado::ESTADO_CANCELADO)
+                        <p class="text-danger">PEDIDO CANCELADO</p>
+                        @break
+                    @case(App\Estado::ESTADO_APROBADO)
+                        <form action="/orders/{{$order->id}}/status" method="POST"> @method('PATCH') @csrf  
+                            <button type="submit" name="status" value="{{App\Estado::ESTADO_PREPARANDO}}" class="btn btn-block bg-info text-white">Generar etiqueta de envio</button>
+                        </form>
+                        @break
+                    @case(App\Estado::ESTADO_PREPARANDO)
+                        <form action="/orders/{{$order->id}}/status" method="POST"> @method('PATCH') @csrf  
+                            <button type="submit" name="status" value="{{App\Estado::ESTADO_DESPACHADO}}" class="btn btn-block bg-info text-white">Despachar producto</button>
+                        </form>
+                        @break
+                    @case(App\Estado::ESTADO_DESPACHADO)
+                        <p class="text-danger">El pedido ya ha sido despachado.</p>
+                        @break
+                    @case(App\Estado::ESTADO_ENTREGADO)
+                        <p class="text-success">El pedido ya ha sido entregado.</p>
+                        @break
+                    @case(App\Estado::ESTADO_RECLAMO)
+                        <p class="text-danger">Se ha iniciado un reclamo.</p>
+                        <form action="/orders/{{$order->id}}/status" method="POST"> @method('PATCH') @csrf  
+                            <button type="submit" name="status" value="{{App\Estado::ESTADO_CAMBIO}}" class="btn btn-lg bg-warning text-white">Enviar cambio de paquete</button>
+                            <button type="submit" name="status" value="{{App\Estado::ESTADO_CAMBIO}}" class="btn btn-lg bg-danger text-white">Enviar devolucion de dinero</button>
+                        </form>
+                        @break
+                    @case(App\Estado::ESTADO_CAMBIO)
+                        <p class="text-danger">El producto ha sido cambiado.</p>
+                        @break
+                    @case(App\Estado::ESTADO_DEVOLUCION)
+                        <p class="text-danger">Se ha devuelto el dinero al usuario.</p>
+                        @break
+                @endswitch
+            </div>
+
     <div class="card">
-        <h5 class="card-header">Datos de la compra</h5>
+        <h5 class="card-header">{{$order->estado->estado}} - {{$order->estado->subestado}}</h5>
         <div class="row">
             <div class="card-body col-6">
                 <p>Item comprado: <strong>{{$order->item_nombre}}</strong></p>
@@ -27,7 +72,7 @@
             </div>
         </div>
     </div>
-    <div class="card">
+    <div class="card mt-1">
         <h5 class="card-header">Datos del usuario</h5>
         <div class="card-body">
             <p>Nombre: <strong>{{$order->cliente_nombre}}</strong></p>
@@ -36,48 +81,6 @@
             <p>Direccion: <strong>{{$order->cliente_direccion}}</strong></p>
         </div>
     </div>
-    
-    @switch($order->estado->id)
-        @case(App\Estado::ESTADO_PENDIENTE)
-        @case(App\Estado::ESTADO_AYUDA)
-            <p>Esperando confirmacion de pago</p>
-            <form action="/orders/{{$order->id}}/status" method="POST"> @method('PATCH') @csrf  
-                <button type="submit" name="status" value="{{App\Estado::ESTADO_CANCELADO}}">Cancelar el pedido</button>
-            </form>
-            @break
-        @case(App\Estado::ESTADO_CANCELADO)
-            <p class="text-danger">PEDIDO CANCELADO</p>
-            @break
-        @case(App\Estado::ESTADO_APROBADO)
-            <form action="/orders/{{$order->id}}/status" method="POST"> @method('PATCH') @csrf  
-                <button type="submit" name="status" value="{{App\Estado::ESTADO_PREPARANDO}}">Generar etiqueta de envio</button>
-            </form>
-            @break
-        @case(App\Estado::ESTADO_PREPARANDO)
-            <form action="/orders/{{$order->id}}/status" method="POST"> @method('PATCH') @csrf  
-                <button type="submit" name="status" value="{{App\Estado::ESTADO_DESPACHADO}}">Despachar producto</button>
-            </form>
-            @break
-        @case(App\Estado::ESTADO_DESPACHADO)
-            <p class="text-danger">El pedido ya ha sido despachado.</p>
-            @break
-        @case(App\Estado::ESTADO_ENTREGADO)
-            <p class="text-danger">El pedido ya ha sido entregado.</p>
-            @break
-        @case(App\Estado::ESTADO_RECLAMO)
-            <p class="text-danger">Se ha iniciado un reclamo.</p>
-            <form action="/orders/{{$order->id}}/status" method="POST"> @method('PATCH') @csrf  
-                <button type="submit" name="status" value="{{App\Estado::ESTADO_CAMBIO}}">Enviar cambio de paquete</button>
-                <button type="submit" name="status" value="{{App\Estado::ESTADO_CAMBIO}}">Enviar devolucion de dinero</button>
-            </form>
-            @break
-        @case(App\Estado::ESTADO_CAMBIO)
-            <p class="text-danger">El producto ha sido cambiado.</p>
-            @break
-        @case(App\Estado::ESTADO_DEVOLUCION)
-            <p class="text-danger">Se ha devuelto el dinero al usuario.</p>
-            @break
-    @endswitch
     
     
     

@@ -47,7 +47,24 @@
                 </div>
             </div>
         </div>
-        <button type="submit" class="btn btn-secondary btn-lg">Continuar</button>
+
+        <div class="card mt-1">
+                <h5 class="card-header">Datos de la compra</h5>
+                <div class="row">
+                    <div class="card-body col-6">
+                        <p>Item comprado: <strong>{{$order->item_nombre}}</strong></p>
+                        <p>Precio unitario: <strong>${{round($order->item_preciounitario)}}</strong></p>
+                        <p>Cantidad: <strong>{{$order->item_cantidad}}</strong></p>
+                    </div>
+                    <div class="card-body col-6">
+                        <p>Total de intereses: <strong>${{round($order->intereses)}}</strong></p>
+                        <p>Subtotal: <strong>${{$order->item_subtotal}}</strong></p>
+                        <p>Costo de envio: <strong>${{round($order->item_subtotal) * 0.01}}</strong> <small>(1%)</small></p>
+                        <p>Total: <strong>${{$order->item_subtotal * 1.01}}</strong></p>
+                    </div>
+                </div>
+            </div>
+        <button type="submit" class="btn btn-secondary btn-block bg-success">Continuar</button>
     </form>
 </div>
 

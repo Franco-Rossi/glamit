@@ -11,7 +11,7 @@ use Illuminate\Support\Carbon;
 class OrdersController extends Controller
 {
     public function index(){
-        $orders = Order::all();
+        $orders = Order::paginate(10);
         return view('orders.index', compact('orders'));
     }
     
