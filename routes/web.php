@@ -15,10 +15,12 @@ use Illuminate\Http\Resources\Json\Resource;
 
 Route::get('/', 'PagesController@index');
 
-
+Route::get('/orders', 'OrdersController@index');
 Route::get('/orders/create', 'OrdersController@create');
+Route::get('/orders/{order}', 'OrdersController@show');
 Route::post('/orders/buy', 'OrdersController@buy');
-
+Route::get('/orders/pay/{order}', 'OrdersController@pay');
+Route::patch('/orders/{order}', 'OrdersController@update');
 Route::patch('/orders/{order}/status', 'OrdersController@changeStatus');
 
 /* Route::resource('orders', 'OrdersController'); */
