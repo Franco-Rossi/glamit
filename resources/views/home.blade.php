@@ -3,19 +3,25 @@
 @section('content')
     <div class="row text-center justify-content-center">
         @foreach ($orders as $order)
-            @if ($order->subestado != 'Entregado')
+            
             <div class="col">
                 <div class="card">
-                    <div class="card-header">{{$order->item_nombre}}</div>
+                        <div class="card-header">{{$order->item_nombre}}</div>
                     <div class="card-body">
-                        <h4 class="card-header">{{$order->item_nombre}}</h4>
-                        <p class="card-text">{{$order->item_preciounitario}}</p>
+                        <h4 class="card-title">{{$order->item_cantidad}} unidades</h4>
+                        @switch($order->subestado)
+                            @case('Pendiente')
+                                <p>hola</p>
+                                @break
+                            @case('Cancelado')
+                                <p>chau</p>
+                                @break
+                            @default
+                                
+                        @endswitch
                     </div>
                 </div>
             </div>
-                
-            @endif
-            
         @endforeach
     </div>
 
