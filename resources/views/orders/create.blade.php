@@ -1,46 +1,45 @@
 @extends('layout')
 
 @section('content')
-
-<div class="card">
-    <h5 class="card-header">Comprar</h5>
-    <div class="card-body">
-        <form method="POST" action="/orders/first">
-            {{  csrf_field() }}
-            <p>Usted esta comprando el articulo {{$item->nombre}}.</p>
-            <p>El precio por unidad es de ${{$item->precio}}.</p>
-            <p>Cantidad #todo</p>
-            <p>Tienda #todo</p>
-            <p>Intereses (10%) #todoVue</p>
-            <p>Subtotal #todoVue</p>
-            
-            <p>Por favor, ingrese sus datos para iniciar la compra.</p>
-            
-            <div class="form-group">
-                <label for="cliente_nombre">Nombre</label>
-                <input type="text" class="form-control" name='cliente_nombre'>
+<div class="container">
+    <form method="POST" action="/admin/productos" enctype="multipart/form-data">
+        {{  csrf_field() }}
+        <div class="card">
+            <h5 class="card-header">Comprar un producto</h5>
+            <div class="card-body">
+                <select class="form-control">
+                    @foreach ($items as $item)
+                <option>{{$item->name}}</option>
+                    @endforeach
+                </select>
             </div>
-            
-            <div class="form-group">
-                <label for="cliente_email">Email</label>
-                <input type="text" class="form-control" name='cliente_email'>
+        </div>
+        <div class="card">
+            <h5 class="card-header">Ingrese sus datos</h5>
+            <div class="card-body">
+                
+                <div class="row">
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="Ingrese su nombre">
+                    </div>
+                    <div class="col">
+                        <input type="email" class="form-control" placeholder="Ingrese su email">
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="Ingrese su numero de telefono">
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="Ingrese su direccion">
+                    </div>
+                </div>
             </div>
-            
-            <div class="form-group">
-                <label for="cliente_telefono">Telefono</label>
-                <input type="text" class="form-control" name='cliente_telefono'>
-            </div>
-            
-            <div class="form-group">
-                <label for="cliente_direccion">Direccion</label>
-                <input type="text" class="form-control" name='cliente_direccion'>
-            </div>
-            
-            <button type="submit" class="btn btn-secondary btn-lg">Siguiente</button>
-        </form>
-    </div>
+        </div>
+        <button type="submit" class="btn btn-secondary btn-lg">Agregar producto</button>
+    </form>
 </div>
-
 
 
 

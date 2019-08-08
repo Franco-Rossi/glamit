@@ -1,6 +1,6 @@
 <?php
 
-use \App\Estado;
+use App\Estado;
 use Illuminate\Database\Seeder;
 
 

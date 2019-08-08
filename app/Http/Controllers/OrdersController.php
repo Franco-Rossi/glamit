@@ -13,17 +13,10 @@ class OrdersController extends Controller
         return view('orders.index', compact('orders'));
     }
 
-    public function first(){
+    public function create(){
 
-        $order = new Order();
+        return view ('orders.create');
         
-        $order->name = request('name');
-        $order->description = request('description');
-        $order->mime = $img_name->getClientMimeType();
-        $order->original_filename = $img_name->getClientOriginalName();
-        $order->filename = $img_name->getFilename().'.'.$extension;
-        $order->keywords = request('keywords');
-        $order->save();
     }
 
     /* public function show($id){

@@ -15,7 +15,6 @@ use Illuminate\Http\Resources\Json\Resource;
 Route::get('/', 'PagesController@index');
 
 
-Route::get('/orders', 'OrdersController@index');
-Route::post('/orders/first', 'OrdersController@index');
+Route::get('/orders/create', 'OrdersController@create');
 
 /* Route::resource('orders', 'OrdersController'); */

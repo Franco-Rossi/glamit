@@ -12,9 +12,9 @@
 
 <body>
     
-    <div class="container">
+    <div class="container-fluid">
         <div class="m-auto">
-            <a name="" id="" class="btn btn-primary" href="/" role="button">Comprar</a>
+            <a name="" id="" class="btn btn-primary" href="/orders/create" role="button">Comprar</a>
             <a name="" id="" class="btn btn-primary" href="/orders" role="button">Administrar</a>
         </div>
         
