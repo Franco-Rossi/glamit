@@ -57,6 +57,7 @@ class OrdersController extends Controller
         
         $data = $request->all();
         $data['fecha_factura'] = now();
+        $data['fecha_actualizacion'] = now();
         $data['costo_envio'] = $order->item_subtotal * 0.01;
         $data['total'] = $order->item_subtotal + $data['costo_envio'];
         $data['estado_id'] = Estado::ESTADO_APROBADO;
@@ -72,6 +73,7 @@ class OrdersController extends Controller
         
         $order = Order::findOrFail($id);
         $order->estado_id = $request->status;
+        $order->fecha_actualizacion = now();
         $order->save();
         
         return redirect()->back();
