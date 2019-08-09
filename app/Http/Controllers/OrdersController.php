@@ -72,8 +72,8 @@ class OrdersController extends Controller
     {
         
         $order = Order::findOrFail($id);
-        $order->estado_id = $request->status;
         $order->fecha_actualizacion = now();
+        $order->estado_id = $request->status;
         $order->save();
         
         return redirect()->back();
